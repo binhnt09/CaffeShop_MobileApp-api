@@ -1,4 +1,4 @@
-package com.example.ceffeshop_mobileappdev.controller;
+package com.example.ceffeshop_mobileappdev.controller.auth;
 
 import static com.example.ceffeshop_mobileappdev.security.SecurityUtils.AUTHORITIES_CLAIM;
 import static com.example.ceffeshop_mobileappdev.security.SecurityUtils.JWT_ALGORITHM;
@@ -6,7 +6,7 @@ import static com.example.ceffeshop_mobileappdev.security.SecurityUtils.USER_ID_
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.example.ceffeshop_mobileappdev.security.DomainUserDetailsService.UserWithId;
-import com.example.ceffeshop_mobileappdev.controller.vm.LoginVM;
+import com.example.ceffeshop_mobileappdev.controller.auth.vm.LoginVM;
 import jakarta.validation.Valid;
 import java.security.Principal;
 import java.time.Instant;
