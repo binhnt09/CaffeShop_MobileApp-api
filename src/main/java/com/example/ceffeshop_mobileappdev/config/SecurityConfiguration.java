@@ -51,8 +51,21 @@ public class SecurityConfiguration {
                     .requestMatchers("/api/account/reset-password/finish").permitAll()
                     .requestMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
 
+                    .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/menu-items/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/customization-groups/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/customization-options/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/branches/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/branches/open").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/menu-items/by-branch/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/menu-items/*/detail").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/coupons/validate").permitAll()
+                    .requestMatchers("/ws/**").permitAll()
+
                     .requestMatchers("/uploads/**").permitAll()
 
+                    .requestMatchers("/api/mobile/**").authenticated()
+                    .requestMatchers("/api/loyalty/**").authenticated()
                     .requestMatchers("/api/**").authenticated()
                     .requestMatchers("/websocket/**").authenticated()
 //                    .requestMatchers("/v3/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)

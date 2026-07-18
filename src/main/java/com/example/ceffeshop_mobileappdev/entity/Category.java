@@ -31,5 +31,12 @@ public class Category {
     @Column(name = "Status", nullable = false, length = 20)
     private String status;
 
+    @Size(max = 255)
+    @Nationalized
+    @Column(name = "Description", length = 255)
+    private String description;
 
+    @Size(max = 255)
+    @Column(name = "ImageUrl", length = 255)
+    private String imageUrl;
 }

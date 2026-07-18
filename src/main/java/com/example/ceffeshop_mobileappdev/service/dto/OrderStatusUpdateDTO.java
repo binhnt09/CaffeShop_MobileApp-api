@@ -1,0 +1,17 @@
+package com.example.ceffeshop_mobileappdev.service.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.Instant;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderStatusUpdateDTO {
+    private Integer orderId;
+    private String orderCode;
+    private String orderStatus;
+    private String message;
+    private Instant updatedAt;
+}
