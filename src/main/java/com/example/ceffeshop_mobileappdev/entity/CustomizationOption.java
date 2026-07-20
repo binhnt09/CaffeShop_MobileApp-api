@@ -40,5 +40,43 @@ public class CustomizationOption {
     @Column(name = "IsAvailable")
     private Boolean isAvailable;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public CustomizationGroup getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(CustomizationGroup groupID) {
+        this.groupID = groupID;
+    }
+
+    public String getOptionName() {
+        return optionName;
+    }
+
+    public void setOptionName(String optionName) {
+        this.optionName = optionName;
+    }
+
+    public BigDecimal getExtraPrice() {
+        return extraPrice;
+    }
+
+    public void setExtraPrice(BigDecimal extraPrice) {
+        this.extraPrice = extraPrice;
+    }
+
+    public Boolean getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(Boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
 }

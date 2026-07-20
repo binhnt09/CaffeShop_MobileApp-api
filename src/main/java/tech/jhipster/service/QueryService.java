@@ -67,7 +67,7 @@ public abstract class QueryService<ENTITY> {
      */
     protected <X> Specification<ENTITY> buildSpecification(Filter<X> filter, Function<Root<ENTITY>, Expression<X>> metaclassFunction) {
         if (filter == null) {
-            return Specification.unrestricted();
+            return Specification.where(null);
         } else if (filter.getEquals() != null) {
             return equalsSpecification(metaclassFunction, filter.getEquals());
         } else if (filter.getIn() != null) {
@@ -79,7 +79,7 @@ public abstract class QueryService<ENTITY> {
         } else if (filter.getSpecified() != null) {
             return byFieldSpecified(metaclassFunction, filter.getSpecified());
         }
-        return Specification.unrestricted();
+        return Specification.where(null);
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class QueryService<ENTITY> {
      */
     protected Specification<ENTITY> buildSpecification(StringFilter filter, Function<Root<ENTITY>, Expression<String>> metaclassFunction) {
         if (filter == null) {
-            return Specification.unrestricted();
+            return Specification.where(null);
         } else if (filter.getEquals() != null) {
             return equalsSpecification(metaclassFunction, filter.getEquals());
         } else if (filter.getIn() != null) {
@@ -120,7 +120,7 @@ public abstract class QueryService<ENTITY> {
         } else if (filter.getSpecified() != null) {
             return byFieldSpecified(metaclassFunction, filter.getSpecified());
         }
-        return Specification.unrestricted();
+        return Specification.where(null);
     }
 
     /**
@@ -155,14 +155,14 @@ public abstract class QueryService<ENTITY> {
         Function<Root<ENTITY>, Expression<X>> metaclassFunction
     ) {
         if (filter == null) {
-            return Specification.unrestricted();
+            return Specification.where(null);
         } else if (filter.getEquals() != null) {
             return equalsSpecification(metaclassFunction, filter.getEquals());
         } else if (filter.getIn() != null) {
             return valueIn(metaclassFunction, filter.getIn());
         }
 
-        Specification<ENTITY> result = Specification.unrestricted();
+        Specification<ENTITY> result = Specification.where(null);
         if (filter.getSpecified() != null) {
             result = result.and(byFieldSpecified(metaclassFunction, filter.getSpecified()));
         }

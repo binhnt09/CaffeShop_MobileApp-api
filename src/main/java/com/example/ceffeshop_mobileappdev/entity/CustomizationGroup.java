@@ -32,5 +32,35 @@ public class CustomizationGroup {
     @Column(name = "MaxSelect")
     private Integer maxSelect;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public Integer getMinSelect() {
+        return minSelect;
+    }
+
+    public void setMinSelect(Integer minSelect) {
+        this.minSelect = minSelect;
+    }
+
+    public Integer getMaxSelect() {
+        return maxSelect;
+    }
+
+    public void setMaxSelect(Integer maxSelect) {
+        this.maxSelect = maxSelect;
+    }
 }

@@ -100,5 +100,147 @@ public class Order {
     @Column(name = "UpdatedAt")
     private Instant updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public Branch getBranchID() {
+        return branchID;
+    }
+
+    public void setBranchID(Branch branchID) {
+        this.branchID = branchID;
+    }
+
+    public Customer getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(Customer customerID) {
+        this.customerID = customerID;
+    }
+
+    public User getCashierID() {
+        return cashierID;
+    }
+
+    public void setCashierID(User cashierID) {
+        this.cashierID = cashierID;
+    }
+
+    public Shift getShiftID() {
+        return shiftID;
+    }
+
+    public void setShiftID(Shift shiftID) {
+        this.shiftID = shiftID;
+    }
+
+    public String getOrderSource() {
+        return orderSource;
+    }
+
+    public void setOrderSource(String orderSource) {
+        this.orderSource = orderSource;
+    }
+
+    public String getFulfillmentMode() {
+        return fulfillmentMode;
+    }
+
+    public void setFulfillmentMode(String fulfillmentMode) {
+        this.fulfillmentMode = fulfillmentMode;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getVATAmount() {
+        return vATAmount;
+    }
+
+    public void setVATAmount(BigDecimal vATAmount) {
+        this.vATAmount = vATAmount;
+    }
+
+    public BigDecimal getvATAmount() {
+        return vATAmount;
+    }
+
+    public void setvATAmount(BigDecimal vATAmount) {
+        this.vATAmount = vATAmount;
+    }
+
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(BigDecimal discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public BigDecimal getFinalAmount() {
+        return finalAmount;
+    }
+
+    public void setFinalAmount(BigDecimal finalAmount) {
+        this.finalAmount = finalAmount;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

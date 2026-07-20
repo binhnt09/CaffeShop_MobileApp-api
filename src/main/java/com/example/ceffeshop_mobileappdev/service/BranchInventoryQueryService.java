@@ -41,15 +41,16 @@ public class BranchInventoryQueryService extends QueryService<BranchInventory> {
     }
 
     protected Specification<BranchInventory> createSpecification(BranchInventoryCriteria criteria) {
-        Specification<BranchInventory> specification = Specification.unrestricted();
+        // ĐÃ SỬA: Thay Specification.unrestricted() thành Specification.where(null) chuẩn Spring Data JPA
+        Specification<BranchInventory> specification = Specification.where(null);
         if (criteria != null) {
             specification = Specification.allOf(
-                Boolean.TRUE.equals(criteria.getDistinct()) ? distinct(criteria.getDistinct()) : Specification.unrestricted(),
-                buildSpecification(criteria.getBranchId(), root -> root.join(BranchInventory_.branchID, JoinType.LEFT).get(Branch_.id)),
-                buildSpecification(criteria.getIngredientId(), root -> root.join(BranchInventory_.ingredientID, JoinType.LEFT).get(Ingredient_.id)),
-                buildSpecification(criteria.getIngredientName(), root -> root.join(BranchInventory_.ingredientID, JoinType.LEFT).get(Ingredient_.ingredientName)),
-                buildRangeSpecification(criteria.getQuantityAvailable(), BranchInventory_.currentStock),
-                buildRangeSpecification(criteria.getLastUpdated(), BranchInventory_.updatedAt)
+                    Boolean.TRUE.equals(criteria.getDistinct()) ? distinct(criteria.getDistinct()) : Specification.where(null),
+                    buildSpecification(criteria.getBranchId(), root -> root.join(BranchInventory_.branchID, JoinType.LEFT).get(Branch_.id)),
+                    buildSpecification(criteria.getIngredientId(), root -> root.join(BranchInventory_.ingredientID, JoinType.LEFT).get(Ingredient_.id)),
+                    buildSpecification(criteria.getIngredientName(), root -> root.join(BranchInventory_.ingredientID, JoinType.LEFT).get(Ingredient_.ingredientName)),
+                    buildRangeSpecification(criteria.getQuantityAvailable(), BranchInventory_.currentStock),
+                    buildRangeSpecification(criteria.getLastUpdated(), BranchInventory_.updatedAt)
             );
         }
         return specification;
