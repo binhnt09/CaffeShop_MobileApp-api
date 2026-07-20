@@ -51,12 +51,14 @@ public class SecurityConfiguration {
                     .requestMatchers("/api/account/reset-password/finish").permitAll()
                     .requestMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
 
+                    .requestMatchers("/api/branches/**").permitAll()
+                    .requestMatchers("/api/recipes/**").permitAll()
+                    .requestMatchers("/api/branch-inventories/**").permitAll()
+                    .requestMatchers("/api/reports/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/menu-items/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/customization-groups/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/customization-options/**").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/branches/**").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/branches/open").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/menu-items/by-branch/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/menu-items/*/detail").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/coupons/validate").permitAll()
@@ -83,5 +85,17 @@ public class SecurityConfiguration {
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()));
         return http.build();
+    }
+
+    @Bean
+    public org.springframework.web.filter.CorsFilter corsFilter() {
+        org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+        org.springframework.web.cors.CorsConfiguration config = new org.springframework.web.cors.CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new org.springframework.web.filter.CorsFilter(source);
     }
 }
