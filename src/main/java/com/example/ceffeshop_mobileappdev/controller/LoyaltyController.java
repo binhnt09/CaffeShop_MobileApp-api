@@ -57,7 +57,7 @@ public class LoyaltyController {
         return ResponseEntity.ok(ApiResponse.success(dto, "Lấy thông tin thành viên thành công"));
     }
 
-    @GetMapping("/transactions")
+    @GetMapping({"/transactions", "/my-transactions"})
     public ResponseEntity<ApiResponse<List<LoyaltyTransactionDTO>>> getTransactions() {
         Long userId = SecurityUtils.getCurrentUserId().orElseThrow(() -> new RuntimeException("Chưa đăng nhập"));
         Customer customer = customerRepository.findByUserID_Id(userId.intValue())

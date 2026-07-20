@@ -87,9 +87,14 @@ public class MenuItemController {
     }
 
     // --- Endpoint: Lấy menu theo chi nhánh ---
-    @GetMapping("/by-branch/{branchId}")
+    @GetMapping({"/branch/{branchId}", "/by-branch/{branchId}"})
     public ResponseEntity<ApiResponse<List<MenuItemDTO>>> getMenuByBranch(@PathVariable Integer branchId) {
         List<MenuItem> items = branchMenuItemRepository.findAvailableMenuItemsByBranchId(branchId);
+        if (items == null || items.isEmpty()) {
+            // Fallback: Lấy toàn bộ món nếu chưa gán riêng cho chi nhánh
+            List<MenuItemDTO> allItems = menuItemQueryService.findByCriteria(new MenuItemCriteria());
+            return ResponseEntity.ok(ApiResponse.success(allItems, "Lấy menu mặc định cho chi nhánh thành công"));
+        }
         List<MenuItemDTO> dtos = items.stream().map(menuItemMapper::toDto).toList();
         return ResponseEntity.ok(ApiResponse.success(dtos, "Lấy menu theo chi nhánh thành công"));
     }

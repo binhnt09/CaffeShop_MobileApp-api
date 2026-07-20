@@ -60,6 +60,7 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.GET, "/api/menu-items/by-branch/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/menu-items/*/detail").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/coupons/validate").permitAll()
+                    .requestMatchers("/api/payment/**").permitAll()
                     .requestMatchers("/ws/**").permitAll()
 
                     .requestMatchers("/uploads/**").permitAll()

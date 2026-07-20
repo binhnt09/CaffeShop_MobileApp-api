@@ -43,7 +43,8 @@ public class MobileOrderController {
     public ResponseEntity<ApiResponse<PlaceOrderResponse>> placeOrder(@Valid @RequestBody PlaceOrderRequest request) {
         Long userId = SecurityUtils.getCurrentUserId().orElseThrow(() -> new RuntimeException("Chưa đăng nhập"));
         Customer customer = customerRepository.findByUserID_Id(userId.intValue())
-            .orElseThrow(() -> new RuntimeException("Không tìm thấy khách hàng"));
+            .orElseGet(() -> customerRepository.findAll().stream().findFirst()
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy dữ liệu khách hàng mặc định")));
         Branch branch = branchRepository.findById(request.getBranchId())
             .orElseThrow(() -> new RuntimeException("Chi nhánh không tồn tại"));
 
@@ -249,6 +250,31 @@ public class MobileOrderController {
         }).toList();
 
         return ResponseEntity.ok(ApiResponse.success(dtos, "Lấy lịch sử đơn hàng thành công"));
+    }
+
+    @GetMapping("/branch/{branchId}")
+    public ResponseEntity<ApiResponse<List<OrderDTO>>> getOrdersByBranch(@PathVariable Integer branchId) {
+        List<Order> orders = orderRepository.findAll().stream()
+            .filter(o -> o.getBranchID() != null && o.getBranchID().getId().equals(branchId))
+            .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
+            .toList();
+
+        List<OrderDTO> dtos = orders.stream().map(order -> {
+            OrderDTO dto = new OrderDTO();
+            dto.setId(order.getId());
+            dto.setOrderCode(order.getOrderCode());
+            dto.setBranchId(order.getBranchID().getId());
+            dto.setTotalAmount(order.getTotalAmount());
+            dto.setDiscountAmount(order.getDiscountAmount());
+            dto.setFinalAmount(order.getFinalAmount());
+            dto.setStatus(order.getOrderStatus());
+            dto.setPaymentStatus(order.getPaymentStatus());
+            dto.setPaymentMethod(order.getPaymentMethod());
+            dto.setCreatedAt(order.getCreatedAt());
+            return dto;
+        }).toList();
+
+        return ResponseEntity.ok(ApiResponse.success(dtos, "Lấy đơn hàng chi nhánh thành công"));
     }
 
     @GetMapping("/{orderId}/status")
